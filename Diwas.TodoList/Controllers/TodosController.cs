@@ -53,7 +53,7 @@ namespace Diwas.TodoList.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var todo = await _todoDbContext.Todos.SingleOrDefaultAsync(x => x.Id == id);
             _todoDbContext.Todos.Remove(todo);
@@ -62,7 +62,7 @@ namespace Diwas.TodoList.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int id, [FromBody] Todo todo)
+        public async Task<IActionResult> Update(int id, [FromBody] Todo todo)
         {
             if (id != todo.Id)
             {
