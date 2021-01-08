@@ -56,6 +56,8 @@ namespace Diwas.TodoList.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var todo = await _todoDbContext.Todos.SingleOrDefaultAsync(x => x.Id == id);
+            if (todo == null)
+                return BadRequest();
             _todoDbContext.Todos.Remove(todo);
             await _todoDbContext.SaveChangesAsync();
             return NoContent();
